@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GamesAreSoftware.Entity;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,6 +10,9 @@ namespace GamesAreSoftware
     /// </summary>
     public class Game1 : Game
     {
+        private Court _court;
+        
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -27,7 +31,8 @@ namespace GamesAreSoftware
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            Locator.Init(this, graphics.GraphicsDevice, Content, Content.Load<SpriteFont>("Arial"));
+            _court = new Court();
             base.Initialize();
         }
 
@@ -62,8 +67,8 @@ namespace GamesAreSoftware
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
+            _court.Update(gameTime);
+            
             base.Update(gameTime);
         }
 
