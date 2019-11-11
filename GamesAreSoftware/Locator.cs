@@ -34,12 +34,18 @@ namespace GamesAreSoftware
         private static void ArrangeServices()
         {
             var spriteBatchService = new SpriteBatchService(new SpriteBatch(CurrentGraphicsDevice));
+            var physicsService = new PhysicsService();
+            var settingsService = new SettingsService();
 
             services = new Dictionary<Type, object>()
             {                
                 { typeof(IDrawableService), new DrawableService(spriteBatchService) },
                 { typeof(IContentManagerService), new ContentManagerService(CurrentContentManager) },
-                { typeof(ISpriteBatchService), spriteBatchService }
+                { typeof(ISpriteBatchService), spriteBatchService },
+                { typeof(IPhysicsService), physicsService },
+                { typeof(ISettingsService), settingsService },
+                { typeof(IGameControls), new GameControls(physicsService, settingsService) }
+                
             };
         }
 

@@ -20,14 +20,13 @@ namespace GamesAreSoftware
             {
                 if(_court == null)
                 {
-                    _court = new Court();
+                    _court = new Court(Locator.Get<IGameControls>(), Locator.Get<IPhysicsService>());
                     _court.Init();
                 }
                 return _court;
             }
         }
-        
-
+                
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -63,9 +62,7 @@ namespace GamesAreSoftware
             var contentService = Locator.Get<IContentManagerService>();
             contentService.LoadTexture("court", Content.Load<Texture2D>("court"));
             contentService.LoadTexture("paddleblue", Content.Load<Texture2D>("paddleblue"));
-            contentService.LoadTexture("ball", Content.Load<Texture2D>("ball"));
-
-            // TODO: use this.Content to load your game content here
+            contentService.LoadTexture("ball", Content.Load<Texture2D>("ball"));            
         }
 
         /// <summary>
@@ -83,12 +80,8 @@ namespace GamesAreSoftware
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            Court.Update(gameTime);
-            
+        {            
+            Court.Update(gameTime);            
             base.Update(gameTime);
         }
 
