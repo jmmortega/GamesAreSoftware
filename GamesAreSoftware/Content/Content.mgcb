@@ -37,6 +37,13 @@
 /processorParam:TextureFormat=Color
 /build:court.png
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont;Arial.spritefont
+
 #begin paddleblue.png
 /importer:TextureImporter
 /processor:TextureProcessor

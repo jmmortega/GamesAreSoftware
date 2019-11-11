@@ -10,7 +10,7 @@ namespace GamesAreSoftware.Base
     {
         private GameTime _lastDrawGameTime;
         private int _drawOrder;
-        private bool _visible;
+        private bool _visible = true;
         private Vector2 _position;
         private Texture2D _texture;
         private Color _color;
@@ -101,9 +101,9 @@ namespace GamesAreSoftware.Base
             VisibleChanged?.Invoke(this, new EventArgs());
         }
 
-        public void Draw(GameTime gameTime)
-        {            
-            if(_lastDrawGameTime != gameTime)
+        public virtual void Draw(GameTime gameTime)
+        {
+            if(_visible)
             {
                 _lastDrawGameTime = gameTime;
                 Locator.Get<IDrawableService>().Draw(gameTime, this);

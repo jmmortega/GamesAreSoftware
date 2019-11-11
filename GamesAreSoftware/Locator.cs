@@ -38,7 +38,8 @@ namespace GamesAreSoftware
             services = new Dictionary<Type, object>()
             {                
                 { typeof(IDrawableService), new DrawableService(spriteBatchService) },
-                { typeof(IContentManagerService), new ContentManagerService(CurrentContentManager) }
+                { typeof(IContentManagerService), new ContentManagerService(CurrentContentManager) },
+                { typeof(ISpriteBatchService), spriteBatchService }
             };
         }
 

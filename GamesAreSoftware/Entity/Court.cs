@@ -22,11 +22,27 @@ namespace GamesAreSoftware.Entity
             _gameBall = new Ball();
         }
 
+        public override void Init()
+        {
+            base.Init();
+            _leftPaddle.Position = new Vector2(10, Locator.ScreenBounds.Center.Y);
+            _rightPaddle.Position = new Vector2(Locator.ScreenBounds.Right - 50, Locator.ScreenBounds.Center.Y);
+            _gameBall.Position = Locator.ScreenBounds.Center.ToVector2();
+        }
+
         public override void Update(GameTime gameTime)
         {
             _leftPaddle?.Update(gameTime);
             _rightPaddle?.Update(gameTime);
             _gameBall?.Update(gameTime);               
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+            _leftPaddle?.Draw(gameTime);
+            _rightPaddle?.Draw(gameTime);
+            _gameBall?.Draw(gameTime);            
         }
     }
 }

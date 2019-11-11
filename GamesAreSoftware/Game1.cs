@@ -1,4 +1,5 @@
 ﻿using GamesAreSoftware.Entity;
+using GamesAreSoftware.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,7 +11,21 @@ namespace GamesAreSoftware
     /// </summary>
     public class Game1 : Game
     {
+        private ISpriteBatchService _spriteBatchService;
+
         private Court _court;
+        private Court Court
+        {
+            get
+            {
+                if(_court == null)
+                {
+                    _court = new Court();
+                    _court.Init();
+                }
+                return _court;
+            }
+        }
         
 
         GraphicsDeviceManager graphics;
@@ -32,7 +47,7 @@ namespace GamesAreSoftware
         {
             // TODO: Add your initialization logic here
             Locator.Init(this, graphics.GraphicsDevice, Content, Content.Load<SpriteFont>("Arial"));
-            _court = new Court();
+            _spriteBatchService = Locator.Get<ISpriteBatchService>();
             base.Initialize();
         }
 
@@ -44,6 +59,11 @@ namespace GamesAreSoftware
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            var contentService = Locator.Get<IContentManagerService>();
+            contentService.LoadTexture("court", Content.Load<Texture2D>("court"));
+            contentService.LoadTexture("paddleblue", Content.Load<Texture2D>("paddleblue"));
+            contentService.LoadTexture("ball", Content.Load<Texture2D>("ball"));
 
             // TODO: use this.Content to load your game content here
         }
@@ -67,7 +87,7 @@ namespace GamesAreSoftware
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _court.Update(gameTime);
+            Court.Update(gameTime);
             
             base.Update(gameTime);
         }
@@ -79,9 +99,9 @@ namespace GamesAreSoftware
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            _spriteBatchService.Begin();
+            Court.Draw(gameTime);
+            _spriteBatchService.End();            
             base.Draw(gameTime);
         }
     }
