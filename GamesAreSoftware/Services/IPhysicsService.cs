@@ -1,4 +1,5 @@
 ﻿using GamesAreSoftware.Base;
+using GamesAreSoftware.Entity;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,12 @@ namespace GamesAreSoftware.Services
     {
         float PaddleMovement { get; }
 
-        Vector2 BallMovement { get; }
+        float BallSpeed { get; }
 
         bool CheckBounds(GameEntity entity);
+
+        Vector2 CheckPaddleCollideWithBall(Paddle paddle, Ball ball);
+
+        Vector2 CheckBallCollideWithWall(Court court, Ball ball);
     }
 }

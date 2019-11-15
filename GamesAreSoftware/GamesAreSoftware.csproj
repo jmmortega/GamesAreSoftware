@@ -60,12 +60,15 @@
     <Compile Include="Services\IDrawableEntity.cs" />
     <Compile Include="Services\IDrawableService.cs" />
     <Compile Include="Services\IGameControls.cs" />
+    <Compile Include="Services\IJudgeService.cs" />
     <Compile Include="Services\IPhysicsService.cs" />
     <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\ISpriteBatchService.cs" />
+    <Compile Include="Services\JudgeService.cs" />
     <Compile Include="Services\PhysicsService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\SpriteBatchService.cs" />
+    <Compile Include="Utils\RandomExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

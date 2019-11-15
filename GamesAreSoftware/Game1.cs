@@ -20,7 +20,7 @@ namespace GamesAreSoftware
             {
                 if(_court == null)
                 {
-                    _court = new Court(Locator.Get<IGameControls>(), Locator.Get<IPhysicsService>());
+                    _court = new Court(Locator.Get<IGameControls>(), Locator.Get<IPhysicsService>(), Locator.Get<IJudgeService>());
                     _court.Init();
                 }
                 return _court;

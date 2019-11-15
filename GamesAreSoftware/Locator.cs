@@ -44,8 +44,8 @@ namespace GamesAreSoftware
                 { typeof(ISpriteBatchService), spriteBatchService },
                 { typeof(IPhysicsService), physicsService },
                 { typeof(ISettingsService), settingsService },
-                { typeof(IGameControls), new GameControls(physicsService, settingsService) }
-                
+                { typeof(IGameControls), new GameControls(physicsService, settingsService) },
+                { typeof(IJudgeService), new JudgeService() }                
             };
         }
 
